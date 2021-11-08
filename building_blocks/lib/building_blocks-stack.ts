@@ -10,29 +10,34 @@ export class BuildingBlocksStack extends cdk.Stack {
     const privateCidrMask = this.node.tryGetContext("privateCidrMask");
     const isolatedCidrMask = this.node.tryGetContext("isolatedCidrMask");
     const natGateways = this.node.tryGetContext("natGateways");
-    const maxAzs = this.node.tryGetContext("maxAzs")
+    const maxAzs = this.node.tryGetContext("maxAzs");
+    const appName = this.node.tryGetContext("appName");
 
-    const vpc = new ec2.Vpc(this, 'my-cdk-vpc', {
-      cidr: vpcCidr,
-      natGateways: natGateways,
-      maxAzs: maxAzs,
-      subnetConfiguration: [
-        {
-          name: 'public-subnet-1',
-          subnetType: ec2.SubnetType.PUBLIC,
-          cidrMask: publicCidrMask,
-        },
-        {
-          name: 'private-subnet-1',
-          subnetType: ec2.SubnetType.PRIVATE,
-          cidrMask: privateCidrMask,
-        },
-        {
-          name: 'isolated-subnet-1',
-          subnetType: ec2.SubnetType.ISOLATED,
-          cidrMask: isolatedCidrMask,
-        },
-      ],
-    });
+    const vpc = new ec2.Vpc(
+      this, 
+      appName.concat("-vpc"), 
+      {
+        cidr: vpcCidr,
+        natGateways: natGateways,
+        maxAzs: maxAzs,
+        subnetConfiguration: [
+          {
+            name: appName.concat('public-subnet'),
+            subnetType: ec2.SubnetType.PUBLIC,
+            cidrMask: publicCidrMask,
+          },
+          {
+            name: appName.concat('private-subnet'),
+            subnetType: ec2.SubnetType.PRIVATE,
+            cidrMask: privateCidrMask,
+          },
+          {
+            name: appName.concat('isolated-subnet'),
+            subnetType: ec2.SubnetType.ISOLATED,
+            cidrMask: isolatedCidrMask,
+          },
+        ],
+      }
+    );
   }
 }

@@ -19,3 +19,13 @@ new BuildingBlocksStack(app, 'BuildingBlocksStack', {
 
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
+
+const appName = app.node.tryGetContext("appName");
+const owner = app.node.tryGetContext("owner");
+const environment = app.node.tryGetContext("environment");
+
+
+// Tags
+cdk.Tags.of(app).add("application", appName);
+cdk.Tags.of(app).add("owner", owner);
+cdk.Tags.of(app).add("environment", environment);
