@@ -16,6 +16,7 @@ interface VpcProps extends cdk.StackProps {
 export class VpcStack extends cdk.Stack {
 
   readonly createdVpc: ec2.Vpc
+  readonly privateSubnets: ec2.ISubnet[]
 
   constructor(scope: cdk.Construct, id: string, props: VpcProps) {
     super(scope, id, props);
@@ -42,12 +43,12 @@ export class VpcStack extends cdk.Stack {
             cidrMask: publicCidrMask,
           },
           {
-            name: props.appName.concat('private-subnet'),
+            name: appName.concat('private-subnet'),
             subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
             cidrMask: privateCidrMask,
           },
           {
-            name: props.appName.concat('isolated-subnet'),
+            name: appName.concat('isolated-subnet'),
             subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
             cidrMask: isolatedCidrMask,
           },
@@ -56,5 +57,6 @@ export class VpcStack extends cdk.Stack {
     );
 
     this.createdVpc = vpc;
+    this.privateSubnets = vpc.privateSubnets
   }
 }
