@@ -1,13 +1,13 @@
 // import { Template } from '@aws-cdk/assertions';
 // import * as cdk from '@aws-cdk/core';
-// import * as HubSpokeTgw from '../lib/hub_spoke_tgw-stack';
+// import * as NetworkFoundationsPortfolio from '../lib/network_foundations_portfolio-stack';
 
 // example test. To run these tests, uncomment this file along with the
-// example resource in lib/hub_spoke_tgw-stack.ts
+// example resource in lib/network_foundations_portfolio-stack.ts
 test('SQS Queue Created', () => {
 //   const app = new cdk.App();
 //     // WHEN
-//   const stack = new HubSpokeTgw.HubSpokeTgwStack(app, 'MyTestStack');
+//   const stack = new NetworkFoundationsPortfolio.NetworkFoundationsPortfolioStack(app, 'MyTestStack');
 //     // THEN
 //   const template = Template.fromStack(stack);
 

@@ -1,6 +1,2 @@
-# NetworkFoundations-Blueprint
-Set of solutions for network foundations
-
-
-# python3 -m venv .venv in VPC directory. 
-
+References:
+https://lzygo1995.medium.com/how-to-resolve-all-arguments-to-vpc-fromlookup-must-be-concrete-no-tokens-error-in-cdk-add1c2aba97b

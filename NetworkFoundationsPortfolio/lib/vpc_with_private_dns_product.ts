@@ -5,13 +5,15 @@ import * as route53 from "@aws-cdk/aws-route53";
 
 import * as servicecatalog from "@aws-cdk/aws-servicecatalog";
 
-export class BuildingBlocksStack extends cdk.Stack {
+export class VpcStack extends cdk.Stack {
+  readonly vpcProduct: servicecatalog.CloudFormationProduct;
+
   constructor(scope: cdk.Construct, id: string, props: cdk.StackProps) {
     super(scope, id);
 
-    // const vpcCidr = this.node.tryGetContext("vpcCidr");
-
-    const appName = this.node.tryGetContext("appName");
+    const appName = "threeTierVPCProduct";
+    //TODO: Get appName properly
+    //const appName = this.node.tryGetContext("appName");
 
     class ThreeTierVPCProduct extends servicecatalog.ProductStack {
       constructor(scope: cdk.Construct, id: string) {
@@ -58,8 +60,18 @@ export class BuildingBlocksStack extends cdk.Stack {
           }
         );
 
-        const vpc = new ec2.Vpc(this, appName.concat("-vpc"), {
-          cidr: "10.0.0.0/16", // Fix this later.
+        const privateDNSZoneName = new cdk.CfnParameter(
+          this,
+          "privateDNSZoneName",
+          {
+            type: "String",
+            description: "The Private DNS Zone Name",
+            default: "123456789012.example.com", //TODO: Fix this and create the DNS Zone by default.
+          }
+        );
+
+        const vpc = new ec2.Vpc(this, "threeTierVPC", {
+          cidr: "10.0.0.0/16", // TODO: Fix this later and do not hard code.
           natGateways: natGateways.valueAsNumber,
           maxAzs: maxAzs.valueAsNumber,
           subnetConfiguration: [
@@ -85,8 +97,8 @@ export class BuildingBlocksStack extends cdk.Stack {
           this,
           "HostedZone",
           {
-            zoneName: "private.domain.com",
-            vpc, // At least one VPC has to be added to a Private Hosted Zone.
+            zoneName: privateDNSZoneName.valueAsString,
+            vpc,
           }
         );
       }
@@ -110,23 +122,6 @@ export class BuildingBlocksStack extends cdk.Stack {
       }
     );
 
-    const networkPortfolio = new servicecatalog.Portfolio(
-      this,
-      "NetworkPortfolio",
-      {
-        displayName: "NetworkPortfolio",
-        providerName: "Bhavik Shah",
-      }
-    );
-
-    networkPortfolio.addProduct(threeTierVPC);
-
-    const role = iam.Role.fromRoleArn(
-      this,
-      "ExistingAdminRole",
-      "arn:aws:iam::899456967600:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AWSAdministratorAccess_30f517a3940f0385"
-    );
-
-    networkPortfolio.giveAccessToRole(role);
+    this.vpcProduct = threeTierVPC;
   }
 }
