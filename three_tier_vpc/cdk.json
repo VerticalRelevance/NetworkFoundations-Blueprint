@@ -15,12 +15,6 @@
     "@aws-cdk/aws-lambda:recognizeVersionProps": true,
     "@aws-cdk/aws-cloudfront:defaultSecurityPolicyTLSv1.2_2021": true,
     "appName": "three_tier_app",
-    "vpcCidr": "10.0.0.0/16",
-    "publicCidrMask": 24,
-    "privateCidrMask": 24,
-    "isolatedCidrMask": 28,
-    "natGateways": 1,
-    "maxAzs": 3,
     "owner": "OWNER_NAME",
     "environment": "dev"
   }
