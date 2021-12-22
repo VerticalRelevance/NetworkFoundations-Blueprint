@@ -29,25 +29,21 @@ export class VpcStack extends cdk.Stack {
         const natGateways = new cdk.CfnParameter(this, "natGateways", {
           type: "Number",
           description: "The number of Nat Gateways to attach",
-          default: 1,
         });
 
         const maxAzs = new cdk.CfnParameter(this, "maxAzs", {
           type: "Number",
           description: "The number of AZs to create subnets in",
-          default: "3",
         });
 
         const publicCidrMask = new cdk.CfnParameter(this, "publicCidrMask", {
           type: "Number",
           description: "The CIDR mask of public subnets",
-          default: "24",
         });
 
         const privateCidrMask = new cdk.CfnParameter(this, "privateCidrMask", {
           type: "Number",
           description: "The CIDR mask of private subnets",
-          default: "24",
         });
 
         const isolatedCidrMask = new cdk.CfnParameter(
@@ -56,7 +52,6 @@ export class VpcStack extends cdk.Stack {
           {
             type: "Number",
             description: "The CIDR mask of isolated subnets",
-            default: "28",
           }
         );
 
@@ -66,7 +61,6 @@ export class VpcStack extends cdk.Stack {
           {
             type: "String",
             description: "The Private DNS Zone Name",
-            default: "123456789012.example.com", //TODO: Fix this and create the DNS Zone by default.
           }
         );
 
