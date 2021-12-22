@@ -8,7 +8,7 @@ import * as servicecatalog from "@aws-cdk/aws-servicecatalog";
 import { validateString } from "@aws-cdk/core";
 
 export class VpcPeeringStack extends cdk.Stack {
-  readonly vpcPeeringProduct: servicecatalog.CloudFormationProduct;
+  readonly vpcPeeringSCProduct: servicecatalog.CloudFormationProduct;
 
   constructor(scope: cdk.Construct, id: string, props: cdk.StackProps) {
     super(scope, id);
@@ -21,51 +21,100 @@ export class VpcPeeringStack extends cdk.Stack {
       constructor(scope: cdk.Construct, id: string) {
         super(scope, id);
 
-        // TODO: Implement this.
-        // const vpc1ID = new cdk.CfnParameter(this, "vpc1ID", {
-        //   type: "String",
-        //   description: "The ID of VPC 1",
-        //   default: "vpc-0359539d50d0f7b2c",
-        // });
-        // const vpc2ID = new cdk.CfnParameter(this, "vpc2ID", {
-        //   type: "String",
-        //   description: "The ID of VPC 2",
-        //   default: "vpc-02376e85e5bebae76",
-        // });
-
-        //TODO: Remove the Hard coded SSM parameters.
-
-        const vpc1Id = ssm.StringParameter.valueFromLookup(
-          this,
-          "/network_foundations/VPC1ID"
-        );
-
-        const vpc2Id = ssm.StringParameter.valueFromLookup(
-          this,
-          "/network_foundations/VPC2ID"
-        );
-
-        const vpc1 = ec2.Vpc.fromLookup(this, "VPC1", {
-          vpcId: vpc1Id,
+        const vpc1ID = new cdk.CfnParameter(this, "vpc1ID", {
+          type: "String",
+          description: "The ID of VPC 1",
         });
 
-        const vpc2 = ec2.Vpc.fromLookup(this, "VPC2", {
-          vpcId: vpc2Id,
+        const vpc1CIDR = new cdk.CfnParameter(this, "vpc1CIDR", {
+          type: "String",
+          description: "CIDR block of the VPC1",
         });
 
-        // // Get the first VPCs
-        // const vpc1 = ec2.Vpc.fromLookup(this, "vpc1", {
-        //   isDefault: false,
-        //   vpcId: vpc1ID.valueAsString, //TODO: Provide Value from Service Catalog
-        //   //vpcId: "vpc-0359539d50d0f7b2c",
-        // });
+        const vpc1AZs = new cdk.CfnParameter(this, "vpc1AZs", {
+          type: "String",
+          description: "Comma separated list of Availability zones in VPC1",
+        });
 
-        // // Get the second VPC
-        // const vpc2 = ec2.Vpc.fromLookup(this, "vpc2", {
-        //   isDefault: false,
-        //   //vpcId: "vpc-02376e85e5bebae76",
-        //   vpcId: vpc2ID.valueAsString, //TODO: Provide Value from Service Catalog
-        // });
+        const vpc1PrivateSubnetIDs = new cdk.CfnParameter(
+          this,
+          "vpc1PrivateSubnets",
+          {
+            type: "String",
+            description: "Comma separated list of Private Subnet IDs in VPC1",
+          }
+        );
+
+        const vpc1PrivateSubnetRouteTableIDs = new cdk.CfnParameter(
+          this,
+          "vpc1PrivateSubnetRouteTableIDs",
+          {
+            type: "String",
+            description:
+              "Comma separated list of Private Subnet Route Table IDs in VPC1",
+          }
+        );
+
+        const vpc2ID = new cdk.CfnParameter(this, "vpc2ID", {
+          type: "String",
+          description: "The ID of VPC 2",
+        });
+
+        const vpc2CIDR = new cdk.CfnParameter(this, "vpc2CIDR", {
+          type: "String",
+          description: "CIDR block of the VPC1",
+        });
+
+        const vpc2AZs = new cdk.CfnParameter(this, "vpc2AZs", {
+          type: "String",
+          description: "Comma separated list of Availability zones in VPC2",
+        });
+
+        const vpc2PrivateSubnetIDs = new cdk.CfnParameter(
+          this,
+          "vpc2PrivateSubnets",
+          {
+            type: "String",
+            description: "Comma separated list of Private Subnet IDs in VPC2",
+          }
+        );
+
+        const vpc2PrivateSubnetRouteTableIDs = new cdk.CfnParameter(
+          this,
+          "vpc2PrivateSubnetRouteTableIDs",
+          {
+            type: "String",
+            description:
+              "Comma separated list of Private Subnet Route Table IDs in VPC2",
+          }
+        );
+
+        const vpc1AZsArray = vpc1AZs.valueAsString.split(",");
+        const vpc2AZsArray = vpc2AZs.valueAsString.split(",");
+        const vpc1PrivateSubnetIDsArray =
+          vpc1PrivateSubnetIDs.valueAsString.split(",");
+        const vpc2PrivateSubnetIDsArray =
+          vpc2PrivateSubnetIDs.valueAsString.split(",");
+        const vpc1PrivateSubnetRouteTableIDsArray =
+          vpc1PrivateSubnetRouteTableIDs.valueAsString.split(",");
+        const vpc2PrivateSubnetRouteTableIDsArray =
+          vpc2PrivateSubnetRouteTableIDs.valueAsString.split(",");
+
+        const vpc1 = ec2.Vpc.fromVpcAttributes(this, "VPC1", {
+          vpcId: vpc1ID.valueAsString,
+          vpcCidrBlock: vpc1CIDR.valueAsString,
+          availabilityZones: vpc1AZsArray,
+          privateSubnetIds: vpc1PrivateSubnetIDsArray,
+          privateSubnetRouteTableIds: vpc1PrivateSubnetRouteTableIDsArray,
+        });
+
+        const vpc2 = ec2.Vpc.fromVpcAttributes(this, "VPC2", {
+          vpcId: vpc2ID.valueAsString,
+          vpcCidrBlock: vpc2CIDR.valueAsString,
+          availabilityZones: vpc2AZsArray,
+          privateSubnetIds: vpc2PrivateSubnetIDsArray,
+          privateSubnetRouteTableIds: vpc2PrivateSubnetRouteTableIDsArray,
+        });
 
         // Create the peering connection
         const peer = new ec2.CfnVPCPeeringConnection(this, "Peer", {
@@ -106,7 +155,7 @@ export class VpcPeeringStack extends cdk.Stack {
         //Add Product code above this
       }
     }
-    const vpcPeeringProduct = new servicecatalog.CloudFormationProduct(
+    const vpcPeeringProductInstance = new servicecatalog.CloudFormationProduct(
       this,
       "vpcPeeringProduct",
       {
@@ -117,13 +166,13 @@ export class VpcPeeringStack extends cdk.Stack {
             productVersionName: "v0.1",
             cloudFormationTemplate:
               servicecatalog.CloudFormationTemplate.fromProductStack(
-                new VPCPeeringProduct(this, "vpcPeeringProduct")
+                new VPCPeeringProduct(this, "vpcPeeringProductInstance")
               ),
           },
         ],
       }
     );
 
-    this.vpcPeeringProduct = vpcPeeringProduct;
+    this.vpcPeeringSCProduct = vpcPeeringProductInstance;
   }
 }

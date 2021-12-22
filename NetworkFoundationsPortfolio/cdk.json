@@ -1,9 +1,7 @@
 {
   "app": "npx ts-node --prefer-ts-exts bin/network_foundations_portfolio.ts",
   "watch": {
-    "include": [
-      "**"
-    ],
+    "include": ["**"],
     "exclude": [
       "README.md",
       "cdk*.json",

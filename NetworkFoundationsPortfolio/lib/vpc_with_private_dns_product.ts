@@ -82,12 +82,12 @@ export class VpcStack extends cdk.Stack {
             },
             {
               name: appName.concat("private-subnet"),
-              subnetType: ec2.SubnetType.PRIVATE,
+              subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
               cidrMask: privateCidrMask.valueAsNumber,
             },
             {
               name: appName.concat("isolated-subnet"),
-              subnetType: ec2.SubnetType.ISOLATED,
+              subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
               cidrMask: isolatedCidrMask.valueAsNumber,
             },
           ],

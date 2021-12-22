@@ -33,8 +33,6 @@ export class NetworkFoundationsPortfolioStack extends cdk.Stack {
 
     networkPortfolio.giveAccessToRole(role);
 
-    //networkPortfolio.addProduct(props.products[0]);
-
     props.products.forEach((element) => {
       networkPortfolio.addProduct(element);
     });
