@@ -12,19 +12,9 @@ export class VpcStack extends cdk.Stack {
     super(scope, id);
 
     const appName = "threeTierVPCProduct";
-    //TODO: Get appName properly
-    //const appName = this.node.tryGetContext("appName");
-
     class ThreeTierVPCProduct extends servicecatalog.ProductStack {
       constructor(scope: cdk.Construct, id: string) {
         super(scope, id);
-
-        // TODO: Implement this.
-        // const vpcCidr = new cdk.CfnParameter(this, "vpcCidr", {
-        //   type: "String",
-        //   description: "The CIDR of the VPC",
-        //   default: "10.0.0.0/16",
-        // });
 
         const natGateways = new cdk.CfnParameter(this, "natGateways", {
           type: "Number",
@@ -55,15 +45,6 @@ export class VpcStack extends cdk.Stack {
           }
         );
 
-        const privateDNSZoneName = new cdk.CfnParameter(
-          this,
-          "privateDNSZoneName",
-          {
-            type: "String",
-            description: "The Private DNS Zone Name",
-          }
-        );
-
         const vpc = new ec2.Vpc(this, "threeTierVPC", {
           cidr: "10.0.0.0/16", // TODO: Fix this later and do not hard code.
           natGateways: natGateways.valueAsNumber,
@@ -86,15 +67,6 @@ export class VpcStack extends cdk.Stack {
             },
           ],
         });
-
-        const privateHostedZone = new route53.PrivateHostedZone(
-          this,
-          "HostedZone",
-          {
-            zoneName: privateDNSZoneName.valueAsString,
-            vpc,
-          }
-        );
       }
     }
 

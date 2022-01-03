@@ -4,10 +4,7 @@ import * as servicecatalog from "@aws-cdk/aws-servicecatalog";
 import { ServerOptions } from "https";
 
 interface ProductProps extends cdk.StackProps {
-  products: [
-    servicecatalog.CloudFormationProduct,
-    servicecatalog.CloudFormationProduct
-  ];
+  products: [servicecatalog.CloudFormationProduct];
 }
 
 export class NetworkFoundationsPortfolioStack extends cdk.Stack {
