@@ -18,22 +18,22 @@ export class VpcStack extends cdk.Stack {
 
         const natGateways = new cdk.CfnParameter(this, "natGateways", {
           type: "Number",
-          description: "The number of Nat Gateways to attach",
+          description: "The number of Nat Gateways to attach. Minimum is 1.",
         });
 
         const maxAzs = new cdk.CfnParameter(this, "maxAzs", {
           type: "Number",
-          description: "The number of AZs to create subnets in",
+          description: "The number of AZs to create subnets in. Minimum is 2.",
         });
 
         const publicCidrMask = new cdk.CfnParameter(this, "publicCidrMask", {
           type: "Number",
-          description: "The CIDR mask of public subnets",
+          description: "The CIDR mask of public subnets. E.g. 24",
         });
 
         const privateCidrMask = new cdk.CfnParameter(this, "privateCidrMask", {
           type: "Number",
-          description: "The CIDR mask of private subnets",
+          description: "The CIDR mask of private subnets. E.g. 24",
         });
 
         const isolatedCidrMask = new cdk.CfnParameter(
@@ -41,31 +41,18 @@ export class VpcStack extends cdk.Stack {
           "isolatedCidrMask",
           {
             type: "Number",
-            description: "The CIDR mask of isolated subnets",
+            description: "The CIDR mask of isolated subnets. E.g. 28",
           }
         );
 
         const vpc = new ec2.Vpc(this, "threeTierVPC", {
           cidr: "10.0.0.0/16", // TODO: Fix this later and do not hard code.
-          natGateways: natGateways.valueAsNumber,
-          maxAzs: maxAzs.valueAsNumber,
-          subnetConfiguration: [
-            {
-              name: appName.concat("public-subnet"),
-              subnetType: ec2.SubnetType.PUBLIC,
-              cidrMask: publicCidrMask.valueAsNumber,
-            },
-            {
-              name: appName.concat("private-subnet"),
-              subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
-              cidrMask: privateCidrMask.valueAsNumber,
-            },
-            {
-              name: appName.concat("isolated-subnet"),
-              subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
-              cidrMask: isolatedCidrMask.valueAsNumber,
-            },
-          ],
+        });
+
+        const publicSubnets = new ec2.Subnet(this, "publicSubnet", {
+          availabilityZone: "us-west-1a",
+          cidrBlock: "10.1.0.0/24",
+          vpcId: vpc.vpcId,
         });
       }
     }
