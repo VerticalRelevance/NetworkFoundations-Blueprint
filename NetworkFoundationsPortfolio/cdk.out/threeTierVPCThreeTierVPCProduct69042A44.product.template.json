@@ -1,0 +1,732 @@
+{
+  "Parameters": {
+    "natGateways": {
+      "Type": "Number",
+      "Description": "The number of Nat Gateways to attach. Minimum is 1."
+    },
+    "maxAzs": {
+      "Type": "Number",
+      "Description": "The number of AZs to create subnets in. Minimum is 2."
+    },
+    "publicCidrMask": {
+      "Type": "Number",
+      "Description": "The CIDR mask of public subnets. E.g. 24"
+    },
+    "privateCidrMask": {
+      "Type": "Number",
+      "Description": "The CIDR mask of private subnets. E.g. 24"
+    },
+    "isolatedCidrMask": {
+      "Type": "Number",
+      "Description": "The CIDR mask of isolated subnets. E.g. 28"
+    }
+  },
+  "Resources": {
+    "threeTierVPCD9BCAFF3": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/Resource"
+      }
+    },
+    "threeTierVPCPublicSubnet1SubnetFE016D3F": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.0.0/18",
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": ""
+            }
+          ]
+        },
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/Subnet"
+      }
+    },
+    "threeTierVPCPublicSubnet1RouteTableE661AB78": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/RouteTable"
+      }
+    },
+    "threeTierVPCPublicSubnet1RouteTableAssociationF58402A0": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "threeTierVPCPublicSubnet1RouteTableE661AB78"
+        },
+        "SubnetId": {
+          "Ref": "threeTierVPCPublicSubnet1SubnetFE016D3F"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/RouteTableAssociation"
+      }
+    },
+    "threeTierVPCPublicSubnet1DefaultRoute559C8FFE": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "threeTierVPCPublicSubnet1RouteTableE661AB78"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "threeTierVPCIGWA8EF5B6A"
+        }
+      },
+      "DependsOn": [
+        "threeTierVPCVPCGW2611DB7D"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/DefaultRoute"
+      }
+    },
+    "threeTierVPCPublicSubnet1EIP1BA46AC9": {
+      "Type": "AWS::EC2::EIP",
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/EIP"
+      }
+    },
+    "threeTierVPCPublicSubnet1NATGateway1C0E6D9B": {
+      "Type": "AWS::EC2::NatGateway",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "threeTierVPCPublicSubnet1SubnetFE016D3F"
+        },
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "threeTierVPCPublicSubnet1EIP1BA46AC9",
+            "AllocationId"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/NATGateway"
+      }
+    },
+    "threeTierVPCPublicSubnet2Subnet4D69AF99": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.64.0/18",
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "AvailabilityZone": {
+          "Fn::Select": [
+            1,
+            {
+              "Fn::GetAZs": ""
+            }
+          ]
+        },
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Public"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/Subnet"
+      }
+    },
+    "threeTierVPCPublicSubnet2RouteTableE83BAD2B": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/RouteTable"
+      }
+    },
+    "threeTierVPCPublicSubnet2RouteTableAssociation0E43DBDE": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "threeTierVPCPublicSubnet2RouteTableE83BAD2B"
+        },
+        "SubnetId": {
+          "Ref": "threeTierVPCPublicSubnet2Subnet4D69AF99"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/RouteTableAssociation"
+      }
+    },
+    "threeTierVPCPublicSubnet2DefaultRoute5EF72D74": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "threeTierVPCPublicSubnet2RouteTableE83BAD2B"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "threeTierVPCIGWA8EF5B6A"
+        }
+      },
+      "DependsOn": [
+        "threeTierVPCVPCGW2611DB7D"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/DefaultRoute"
+      }
+    },
+    "threeTierVPCPublicSubnet2EIP89453D24": {
+      "Type": "AWS::EC2::EIP",
+      "Properties": {
+        "Domain": "vpc",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/EIP"
+      }
+    },
+    "threeTierVPCPublicSubnet2NATGateway85350B1F": {
+      "Type": "AWS::EC2::NatGateway",
+      "Properties": {
+        "SubnetId": {
+          "Ref": "threeTierVPCPublicSubnet2Subnet4D69AF99"
+        },
+        "AllocationId": {
+          "Fn::GetAtt": [
+            "threeTierVPCPublicSubnet2EIP89453D24",
+            "AllocationId"
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/NATGateway"
+      }
+    },
+    "threeTierVPCPrivateSubnet1Subnet4A9D0821": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.128.0/18",
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "AvailabilityZone": {
+          "Fn::Select": [
+            0,
+            {
+              "Fn::GetAZs": ""
+            }
+          ]
+        },
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private"
+          },
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/Subnet"
+      }
+    },
+    "threeTierVPCPrivateSubnet1RouteTable8609BCEE": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/RouteTable"
+      }
+    },
+    "threeTierVPCPrivateSubnet1RouteTableAssociation1A110BD9": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "threeTierVPCPrivateSubnet1RouteTable8609BCEE"
+        },
+        "SubnetId": {
+          "Ref": "threeTierVPCPrivateSubnet1Subnet4A9D0821"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/RouteTableAssociation"
+      }
+    },
+    "threeTierVPCPrivateSubnet1DefaultRoute72A88198": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "threeTierVPCPrivateSubnet1RouteTable8609BCEE"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "threeTierVPCPublicSubnet1NATGateway1C0E6D9B"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/DefaultRoute"
+      }
+    },
+    "threeTierVPCPrivateSubnet2Subnet5394E033": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.0.192.0/18",
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "AvailabilityZone": {
+          "Fn::Select": [
+            1,
+            {
+              "Fn::GetAZs": ""
+            }
+          ]
+        },
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "Private"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Private"
+          },
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/Subnet"
+      }
+    },
+    "threeTierVPCPrivateSubnet2RouteTable5234D49D": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/RouteTable"
+      }
+    },
+    "threeTierVPCPrivateSubnet2RouteTableAssociationB9C3CBE9": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "threeTierVPCPrivateSubnet2RouteTable5234D49D"
+        },
+        "SubnetId": {
+          "Ref": "threeTierVPCPrivateSubnet2Subnet5394E033"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/RouteTableAssociation"
+      }
+    },
+    "threeTierVPCPrivateSubnet2DefaultRouteD6D9CFB1": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "threeTierVPCPrivateSubnet2RouteTable5234D49D"
+        },
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "NatGatewayId": {
+          "Ref": "threeTierVPCPublicSubnet2NATGateway85350B1F"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/DefaultRoute"
+      }
+    },
+    "threeTierVPCIGWA8EF5B6A": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/IGW"
+      }
+    },
+    "threeTierVPCVPCGW2611DB7D": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "InternetGatewayId": {
+          "Ref": "threeTierVPCIGWA8EF5B6A"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/VPCGW"
+      }
+    },
+    "publicSubnetA417E6A3": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "CidrBlock": "10.1.0.0/24",
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "AvailabilityZone": "us-west-1a",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/publicSubnet"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/publicSubnet/Subnet"
+      }
+    },
+    "publicSubnetRouteTableD16CD19A": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "VpcId": {
+          "Ref": "threeTierVPCD9BCAFF3"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "threeTierVPC/ThreeTierVPCProduct/publicSubnet"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/publicSubnet/RouteTable"
+      }
+    },
+    "publicSubnetRouteTableAssociationBD142E6C": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "publicSubnetRouteTableD16CD19A"
+        },
+        "SubnetId": {
+          "Ref": "publicSubnetA417E6A3"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/publicSubnet/RouteTableAssociation"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/0WQQW/CMAyFf8vuIaxD4gxC08RlisrE3XXNZmiTKXGKUMV/n7Nu9OQvL8/2Sypbrdb2+WkD17TA9rIcC4yJ4sBICAJd+LQuhjajHATwYghf7Hj8RrM7+aPbGZebjvGQG09StJnqkIU+oOlo1mdtm1JABuHgH+YCr3tXyjvIGwhd4WZc5EFxHrz3QlH53zAl+TttRWN+9eTFTB33u8EQyY5qcxChJ+02NaWQI+rK4JNEfd5viod68nrRcomnA3xoyZ7TcqjWdqX/dU7Mi5i9cE+2nuoPBvgaHkwBAAA="
+      },
+      "Metadata": {
+        "aws:cdk:path": "threeTierVPC/ThreeTierVPCProduct/CDKMetadata/Default"
+      },
+      "Condition": "CDKMetadataAvailable"
+    }
+  },
+  "Conditions": {
+    "CDKMetadataAvailable": {
+      "Fn::Or": [
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "af-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-northeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ap-southeast-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "ca-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "cn-northwest-1"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-central-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-north-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-2"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "eu-west-3"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "me-south-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "sa-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-east-2"
+              ]
+            }
+          ]
+        },
+        {
+          "Fn::Or": [
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-1"
+              ]
+            },
+            {
+              "Fn::Equals": [
+                {
+                  "Ref": "AWS::Region"
+                },
+                "us-west-2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

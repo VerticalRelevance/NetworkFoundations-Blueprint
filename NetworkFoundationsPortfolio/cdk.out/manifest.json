@@ -1,0 +1,360 @@
+{
+  "version": "15.0.0",
+  "artifacts": {
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    },
+    "threeTierVPC": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "threeTierVPC.template.json",
+        "validateOnSynth": false
+      },
+      "metadata": {
+        "/threeTierVPC": [
+          {
+            "type": "aws:cdk:asset",
+            "data": {
+              "path": "threeTierVPCThreeTierVPCProduct69042A44.product.template.json",
+              "id": "85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bd",
+              "packaging": "file",
+              "sourceHash": "85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bd",
+              "s3BucketParameter": "AssetParameters85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bdS3Bucket66BAE6EA",
+              "s3KeyParameter": "AssetParameters85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bdS3VersionKeyBC4F3FC2",
+              "artifactHashParameter": "AssetParameters85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bdArtifactHashE7937917"
+            },
+            "trace": [
+              "ConstructNode.addMetadata (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/construct-compat.ts:252:92)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:161:23)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:66:19)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:70:37)",
+              "ThreeTierVPCProduct._synthesizeTemplate (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/product-stack.ts:49:55)",
+              "ProductStackSynthesizer.synthesizeStackTemplate (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/stack-synthesizer.ts:23:11)",
+              "ProductStackSynthesizer.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/private/product-stack-synthesizer.ts:32:10)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:184:29",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:231:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "synthesizeTree (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:176:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:39:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ],
+        "/threeTierVPC/ThreeTierVPC/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ThreeTierVPCA9012DDB",
+            "trace": [
+              "new CloudFormationProduct (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/product.ts:110:21)",
+              "new VpcStack (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/lib/vpc-product.ts:60:26)",
+              "Object.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/bin/network_foundations_portfolio.ts:9:20)",
+              "Module._compile (node:internal/modules/cjs/loader:1109:14)",
+              "Module.m._compile (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (node:internal/modules/cjs/loader:1138:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (node:internal/modules/cjs/loader:989:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:829:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "main (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (node:internal/modules/cjs/loader:1109:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1138:10)",
+              "Module.load (node:internal/modules/cjs/loader:989:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:829:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/threeTierVPC/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:22:24)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:166:5",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:231:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "injectMetadataResources (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:157:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ],
+        "/threeTierVPC/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:31:27)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:166:5",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:231:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "injectMetadataResources (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:157:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ],
+        "/threeTierVPC/Exports/Output{\"Ref\":\"ThreeTierVPCA9012DDB\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefThreeTierVPCA9012DDB42C6ACD5",
+            "trace": [
+              "VpcStack.exportValue (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack.ts:494:7)",
+              "createImportValue (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/refs.ts:167:37)",
+              "resolveValue (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/refs.ts:103:10)",
+              "Object.resolveReferences (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/refs.ts:30:24)",
+              "Object.prepareApp (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/prepare-app.ts:31:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:24:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ],
+        "/threeTierVPC/AssetParameters/85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bd/S3Bucket": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bdS3Bucket66BAE6EA",
+            "trace": [
+              "new FileAssetParameters (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/asset-parameters.ts:16:32)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:144:16)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:66:19)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:70:37)",
+              "ThreeTierVPCProduct._synthesizeTemplate (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/product-stack.ts:49:55)",
+              "ProductStackSynthesizer.synthesizeStackTemplate (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/stack-synthesizer.ts:23:11)",
+              "ProductStackSynthesizer.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/private/product-stack-synthesizer.ts:32:10)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:184:29",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:231:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "synthesizeTree (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:176:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:39:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ],
+        "/threeTierVPC/AssetParameters/85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bd/S3VersionKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bdS3VersionKeyBC4F3FC2",
+            "trace": [
+              "new FileAssetParameters (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/asset-parameters.ts:21:31)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:144:16)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:66:19)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:70:37)",
+              "ThreeTierVPCProduct._synthesizeTemplate (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/product-stack.ts:49:55)",
+              "ProductStackSynthesizer.synthesizeStackTemplate (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/stack-synthesizer.ts:23:11)",
+              "ProductStackSynthesizer.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/private/product-stack-synthesizer.ts:32:10)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:184:29",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:231:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "synthesizeTree (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:176:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:39:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ],
+        "/threeTierVPC/AssetParameters/85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bd/ArtifactHash": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AssetParameters85aa65e5ed33609d0c9c0c7046abcce01b12dd461d428b9a57b0d6f1215ab6bdArtifactHashE7937917",
+            "trace": [
+              "new FileAssetParameters (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/asset-parameters.ts:26:34)",
+              "LegacyStackSynthesizer.doAddFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:144:16)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:66:19)",
+              "LegacyStackSynthesizer.addFileAsset (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/legacy.ts:70:37)",
+              "ThreeTierVPCProduct._synthesizeTemplate (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/product-stack.ts:49:55)",
+              "ProductStackSynthesizer.synthesizeStackTemplate (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stack-synthesizers/stack-synthesizer.ts:23:11)",
+              "ProductStackSynthesizer.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/private/product-stack-synthesizer.ts:32:10)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:184:29",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:231:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "synthesizeTree (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:176:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:39:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ]
+      },
+      "displayName": "threeTierVPC"
+    },
+    "NetworkFoundationsPortfolioStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "NetworkFoundationsPortfolioStack.template.json",
+        "validateOnSynth": false
+      },
+      "dependencies": [
+        "threeTierVPC"
+      ],
+      "metadata": {
+        "/NetworkFoundationsPortfolioStack/NetworkPortfolio/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NetworkPortfolio3559A230",
+            "trace": [
+              "new Portfolio (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/portfolio.ts:220:22)",
+              "new NetworkFoundationsPortfolioStack (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/lib/network_foundations_portfolio-stack.ts:16:30)",
+              "Object.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/bin/network_foundations_portfolio.ts:10:33)",
+              "Module._compile (node:internal/modules/cjs/loader:1109:14)",
+              "Module.m._compile (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (node:internal/modules/cjs/loader:1138:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (node:internal/modules/cjs/loader:989:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:829:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "main (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (node:internal/modules/cjs/loader:1109:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1138:10)",
+              "Module.load (node:internal/modules/cjs/loader:989:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:829:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/NetworkFoundationsPortfolioStack/NetworkPortfolio/PortolioPrincipalAssociation4eec35c4f3d1": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NetworkPortfolioPortolioPrincipalAssociation4eec35c4f3d10A5830AE",
+            "trace": [
+              "Portfolio.associatePrincipal (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/portfolio.ts:153:7)",
+              "Portfolio.giveAccessToRole (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/portfolio.ts:83:10)",
+              "new NetworkFoundationsPortfolioStack (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/lib/network_foundations_portfolio-stack.ts:31:22)",
+              "Object.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/bin/network_foundations_portfolio.ts:10:33)",
+              "Module._compile (node:internal/modules/cjs/loader:1109:14)",
+              "Module.m._compile (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (node:internal/modules/cjs/loader:1138:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (node:internal/modules/cjs/loader:989:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:829:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "main (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (node:internal/modules/cjs/loader:1109:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1138:10)",
+              "Module.load (node:internal/modules/cjs/loader:989:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:829:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/NetworkFoundationsPortfolioStack/NetworkPortfolio/PortfolioProductAssociationbbae2dafc30d": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "NetworkPortfolioPortfolioProductAssociationbbae2dafc30d93BE94C8",
+            "trace": [
+              "Function.associateProductWithPortfolio (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/private/association-manager.ts:28:9)",
+              "Portfolio.addProduct (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/aws-servicecatalog/lib/portfolio.ts:95:24)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/lib/network_foundations_portfolio-stack.ts:34:24",
+              "Array.forEach (<anonymous>)",
+              "new NetworkFoundationsPortfolioStack (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/lib/network_foundations_portfolio-stack.ts:33:20)",
+              "Object.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/bin/network_foundations_portfolio.ts:10:33)",
+              "Module._compile (node:internal/modules/cjs/loader:1109:14)",
+              "Module.m._compile (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/index.ts:1056:23)",
+              "Module._extensions..js (node:internal/modules/cjs/loader:1138:10)",
+              "Object.require.extensions.<computed> [as .ts] (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/index.ts:1059:12)",
+              "Module.load (node:internal/modules/cjs/loader:989:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:829:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "main (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/bin.ts:198:14)",
+              "Object.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/ts-node/src/bin.ts:288:3)",
+              "Module._compile (node:internal/modules/cjs/loader:1109:14)",
+              "Object.Module._extensions..js (node:internal/modules/cjs/loader:1138:10)",
+              "Module.load (node:internal/modules/cjs/loader:989:32)",
+              "Function.Module._load (node:internal/modules/cjs/loader:829:14)",
+              "Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:76:12)",
+              "node:internal/main/run_main_module:17:47"
+            ]
+          }
+        ],
+        "/NetworkFoundationsPortfolioStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata",
+            "trace": [
+              "new MetadataResource (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:22:24)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:166:5",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:231:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "injectMetadataResources (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:157:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ],
+        "/NetworkFoundationsPortfolioStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable",
+            "trace": [
+              "new MetadataResource (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/metadata-resource.ts:31:27)",
+              "/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:166:5",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:231:5)",
+              "visit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:227:5)",
+              "injectMetadataResources (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:157:3)",
+              "Object.synthesize (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/private/synthesis.ts:18:3)",
+              "App.synth (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/stage.ts:94:23)",
+              "process.<anonymous> (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/@aws-cdk/core/lib/app.ts:64:45)",
+              "Object.onceWrapper (node:events:514:26)",
+              "process.emit (node:events:394:28)",
+              "process.emit (node:domain:470:12)",
+              "process.emit (/Users/bhavik/Documents/VerticalRelevance/networking_foundations/NetworkFoundations-Blueprint/NetworkFoundationsPortfolio/node_modules/source-map-support/source-map-support.js:516:21)"
+            ]
+          }
+        ]
+      },
+      "displayName": "NetworkFoundationsPortfolioStack"
+    }
+  }
+}

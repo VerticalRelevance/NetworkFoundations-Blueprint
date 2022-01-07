@@ -1,0 +1,1015 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Construct",
+          "version": "1.136.0"
+        }
+      },
+      "threeTierVPC": {
+        "id": "threeTierVPC",
+        "path": "threeTierVPC",
+        "children": {
+          "ThreeTierVPCProduct": {
+            "id": "ThreeTierVPCProduct",
+            "path": "threeTierVPC/ThreeTierVPCProduct",
+            "children": {
+              "natGateways": {
+                "id": "natGateways",
+                "path": "threeTierVPC/ThreeTierVPCProduct/natGateways",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnParameter",
+                  "version": "1.136.0"
+                }
+              },
+              "maxAzs": {
+                "id": "maxAzs",
+                "path": "threeTierVPC/ThreeTierVPCProduct/maxAzs",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnParameter",
+                  "version": "1.136.0"
+                }
+              },
+              "publicCidrMask": {
+                "id": "publicCidrMask",
+                "path": "threeTierVPC/ThreeTierVPCProduct/publicCidrMask",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnParameter",
+                  "version": "1.136.0"
+                }
+              },
+              "privateCidrMask": {
+                "id": "privateCidrMask",
+                "path": "threeTierVPC/ThreeTierVPCProduct/privateCidrMask",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnParameter",
+                  "version": "1.136.0"
+                }
+              },
+              "isolatedCidrMask": {
+                "id": "isolatedCidrMask",
+                "path": "threeTierVPC/ThreeTierVPCProduct/isolatedCidrMask",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnParameter",
+                  "version": "1.136.0"
+                }
+              },
+              "threeTierVPC": {
+                "id": "threeTierVPC",
+                "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPC",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.0.0.0/16",
+                        "enableDnsHostnames": true,
+                        "enableDnsSupport": true,
+                        "instanceTenancy": "default",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnVPC",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "PublicSubnet1": {
+                    "id": "PublicSubnet1",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1",
+                    "children": {
+                      "Subnet": {
+                        "id": "Subnet",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/Subnet",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:props": {
+                            "cidrBlock": "10.0.0.0/18",
+                            "vpcId": {
+                              "Ref": "threeTierVPCD9BCAFF3"
+                            },
+                            "availabilityZone": {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::GetAZs": ""
+                                }
+                              ]
+                            },
+                            "mapPublicIpOnLaunch": true,
+                            "tags": [
+                              {
+                                "key": "aws-cdk:subnet-name",
+                                "value": "Public"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-type",
+                                "value": "Public"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "Acl": {
+                        "id": "Acl",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/Acl",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Resource",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "RouteTable": {
+                        "id": "RouteTable",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/RouteTable",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "threeTierVPCD9BCAFF3"
+                            },
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "RouteTableAssociation": {
+                        "id": "RouteTableAssociation",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/RouteTableAssociation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "threeTierVPCPublicSubnet1RouteTableE661AB78"
+                            },
+                            "subnetId": {
+                              "Ref": "threeTierVPCPublicSubnet1SubnetFE016D3F"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "DefaultRoute": {
+                        "id": "DefaultRoute",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/DefaultRoute",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "threeTierVPCPublicSubnet1RouteTableE661AB78"
+                            },
+                            "destinationCidrBlock": "0.0.0.0/0",
+                            "gatewayId": {
+                              "Ref": "threeTierVPCIGWA8EF5B6A"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnRoute",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "EIP": {
+                        "id": "EIP",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/EIP",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                          "aws:cdk:cloudformation:props": {
+                            "domain": "vpc",
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnEIP",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "NATGateway": {
+                        "id": "NATGateway",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1/NATGateway",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                          "aws:cdk:cloudformation:props": {
+                            "subnetId": {
+                              "Ref": "threeTierVPCPublicSubnet1SubnetFE016D3F"
+                            },
+                            "allocationId": {
+                              "Fn::GetAtt": [
+                                "threeTierVPCPublicSubnet1EIP1BA46AC9",
+                                "AllocationId"
+                              ]
+                            },
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnNatGateway",
+                          "version": "1.136.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.PublicSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "PublicSubnet2": {
+                    "id": "PublicSubnet2",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2",
+                    "children": {
+                      "Subnet": {
+                        "id": "Subnet",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/Subnet",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:props": {
+                            "cidrBlock": "10.0.64.0/18",
+                            "vpcId": {
+                              "Ref": "threeTierVPCD9BCAFF3"
+                            },
+                            "availabilityZone": {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::GetAZs": ""
+                                }
+                              ]
+                            },
+                            "mapPublicIpOnLaunch": true,
+                            "tags": [
+                              {
+                                "key": "aws-cdk:subnet-name",
+                                "value": "Public"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-type",
+                                "value": "Public"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "Acl": {
+                        "id": "Acl",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/Acl",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Resource",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "RouteTable": {
+                        "id": "RouteTable",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/RouteTable",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "threeTierVPCD9BCAFF3"
+                            },
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "RouteTableAssociation": {
+                        "id": "RouteTableAssociation",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/RouteTableAssociation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "threeTierVPCPublicSubnet2RouteTableE83BAD2B"
+                            },
+                            "subnetId": {
+                              "Ref": "threeTierVPCPublicSubnet2Subnet4D69AF99"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "DefaultRoute": {
+                        "id": "DefaultRoute",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/DefaultRoute",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "threeTierVPCPublicSubnet2RouteTableE83BAD2B"
+                            },
+                            "destinationCidrBlock": "0.0.0.0/0",
+                            "gatewayId": {
+                              "Ref": "threeTierVPCIGWA8EF5B6A"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnRoute",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "EIP": {
+                        "id": "EIP",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/EIP",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::EIP",
+                          "aws:cdk:cloudformation:props": {
+                            "domain": "vpc",
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnEIP",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "NATGateway": {
+                        "id": "NATGateway",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2/NATGateway",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::NatGateway",
+                          "aws:cdk:cloudformation:props": {
+                            "subnetId": {
+                              "Ref": "threeTierVPCPublicSubnet2Subnet4D69AF99"
+                            },
+                            "allocationId": {
+                              "Fn::GetAtt": [
+                                "threeTierVPCPublicSubnet2EIP89453D24",
+                                "AllocationId"
+                              ]
+                            },
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PublicSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnNatGateway",
+                          "version": "1.136.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.PublicSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "PrivateSubnet1": {
+                    "id": "PrivateSubnet1",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1",
+                    "children": {
+                      "Subnet": {
+                        "id": "Subnet",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/Subnet",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:props": {
+                            "cidrBlock": "10.0.128.0/18",
+                            "vpcId": {
+                              "Ref": "threeTierVPCD9BCAFF3"
+                            },
+                            "availabilityZone": {
+                              "Fn::Select": [
+                                0,
+                                {
+                                  "Fn::GetAZs": ""
+                                }
+                              ]
+                            },
+                            "mapPublicIpOnLaunch": false,
+                            "tags": [
+                              {
+                                "key": "aws-cdk:subnet-name",
+                                "value": "Private"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-type",
+                                "value": "Private"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "Acl": {
+                        "id": "Acl",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/Acl",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Resource",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "RouteTable": {
+                        "id": "RouteTable",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/RouteTable",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "threeTierVPCD9BCAFF3"
+                            },
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "RouteTableAssociation": {
+                        "id": "RouteTableAssociation",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/RouteTableAssociation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "threeTierVPCPrivateSubnet1RouteTable8609BCEE"
+                            },
+                            "subnetId": {
+                              "Ref": "threeTierVPCPrivateSubnet1Subnet4A9D0821"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "DefaultRoute": {
+                        "id": "DefaultRoute",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet1/DefaultRoute",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "threeTierVPCPrivateSubnet1RouteTable8609BCEE"
+                            },
+                            "destinationCidrBlock": "0.0.0.0/0",
+                            "natGatewayId": {
+                              "Ref": "threeTierVPCPublicSubnet1NATGateway1C0E6D9B"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnRoute",
+                          "version": "1.136.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "PrivateSubnet2": {
+                    "id": "PrivateSubnet2",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2",
+                    "children": {
+                      "Subnet": {
+                        "id": "Subnet",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/Subnet",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                          "aws:cdk:cloudformation:props": {
+                            "cidrBlock": "10.0.192.0/18",
+                            "vpcId": {
+                              "Ref": "threeTierVPCD9BCAFF3"
+                            },
+                            "availabilityZone": {
+                              "Fn::Select": [
+                                1,
+                                {
+                                  "Fn::GetAZs": ""
+                                }
+                              ]
+                            },
+                            "mapPublicIpOnLaunch": false,
+                            "tags": [
+                              {
+                                "key": "aws-cdk:subnet-name",
+                                "value": "Private"
+                              },
+                              {
+                                "key": "aws-cdk:subnet-type",
+                                "value": "Private"
+                              },
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "Acl": {
+                        "id": "Acl",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/Acl",
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/core.Resource",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "RouteTable": {
+                        "id": "RouteTable",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/RouteTable",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                          "aws:cdk:cloudformation:props": {
+                            "vpcId": {
+                              "Ref": "threeTierVPCD9BCAFF3"
+                            },
+                            "tags": [
+                              {
+                                "key": "Name",
+                                "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "RouteTableAssociation": {
+                        "id": "RouteTableAssociation",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/RouteTableAssociation",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "threeTierVPCPrivateSubnet2RouteTable5234D49D"
+                            },
+                            "subnetId": {
+                              "Ref": "threeTierVPCPrivateSubnet2Subnet5394E033"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                          "version": "1.136.0"
+                        }
+                      },
+                      "DefaultRoute": {
+                        "id": "DefaultRoute",
+                        "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/PrivateSubnet2/DefaultRoute",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::EC2::Route",
+                          "aws:cdk:cloudformation:props": {
+                            "routeTableId": {
+                              "Ref": "threeTierVPCPrivateSubnet2RouteTable5234D49D"
+                            },
+                            "destinationCidrBlock": "0.0.0.0/0",
+                            "natGatewayId": {
+                              "Ref": "threeTierVPCPublicSubnet2NATGateway85350B1F"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "@aws-cdk/aws-ec2.CfnRoute",
+                          "version": "1.136.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.PrivateSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "IGW": {
+                    "id": "IGW",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/IGW",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::InternetGateway",
+                      "aws:cdk:cloudformation:props": {
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnInternetGateway",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "VPCGW": {
+                    "id": "VPCGW",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/threeTierVPC/VPCGW",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::VPCGatewayAttachment",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "threeTierVPCD9BCAFF3"
+                        },
+                        "internetGatewayId": {
+                          "Ref": "threeTierVPCIGWA8EF5B6A"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnVPCGatewayAttachment",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.Vpc",
+                  "version": "1.136.0"
+                }
+              },
+              "publicSubnet": {
+                "id": "publicSubnet",
+                "path": "threeTierVPC/ThreeTierVPCProduct/publicSubnet",
+                "children": {
+                  "Subnet": {
+                    "id": "Subnet",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/publicSubnet/Subnet",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::Subnet",
+                      "aws:cdk:cloudformation:props": {
+                        "cidrBlock": "10.1.0.0/24",
+                        "vpcId": {
+                          "Ref": "threeTierVPCD9BCAFF3"
+                        },
+                        "availabilityZone": "us-west-1a",
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "threeTierVPC/ThreeTierVPCProduct/publicSubnet"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnet",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Acl": {
+                    "id": "Acl",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/publicSubnet/Acl",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.Resource",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTable": {
+                    "id": "RouteTable",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/publicSubnet/RouteTable",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::RouteTable",
+                      "aws:cdk:cloudformation:props": {
+                        "vpcId": {
+                          "Ref": "threeTierVPCD9BCAFF3"
+                        },
+                        "tags": [
+                          {
+                            "key": "Name",
+                            "value": "threeTierVPC/ThreeTierVPCProduct/publicSubnet"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnRouteTable",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "RouteTableAssociation": {
+                    "id": "RouteTableAssociation",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/publicSubnet/RouteTableAssociation",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::EC2::SubnetRouteTableAssociation",
+                      "aws:cdk:cloudformation:props": {
+                        "routeTableId": {
+                          "Ref": "publicSubnetRouteTableD16CD19A"
+                        },
+                        "subnetId": {
+                          "Ref": "publicSubnetA417E6A3"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/aws-ec2.CfnSubnetRouteTableAssociation",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-ec2.Subnet",
+                  "version": "1.136.0"
+                }
+              },
+              "CDKMetadata": {
+                "id": "CDKMetadata",
+                "path": "threeTierVPC/ThreeTierVPCProduct/CDKMetadata",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/CDKMetadata/Default",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnResource",
+                      "version": "1.136.0"
+                    }
+                  },
+                  "Condition": {
+                    "id": "Condition",
+                    "path": "threeTierVPC/ThreeTierVPCProduct/CDKMetadata/Condition",
+                    "constructInfo": {
+                      "fqn": "@aws-cdk/core.CfnCondition",
+                      "version": "1.136.0"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-servicecatalog.ProductStack",
+              "version": "1.136.0"
+            }
+          },
+          "ThreeTierVPC": {
+            "id": "ThreeTierVPC",
+            "path": "threeTierVPC/ThreeTierVPC",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "threeTierVPC/ThreeTierVPC/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ServiceCatalog::CloudFormationProduct",
+                  "aws:cdk:cloudformation:props": {
+                    "name": "ThreeTierVPC",
+                    "owner": "Bhavik Shah",
+                    "provisioningArtifactParameters": [
+                      {
+                        "name": "v0.1",
+                        "disableTemplateValidation": false,
+                        "info": {}
+                      }
+                    ]
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-servicecatalog.CfnCloudFormationProduct",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-servicecatalog.CloudFormationProduct",
+              "version": "1.136.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "threeTierVPC/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "threeTierVPC/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.136.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "threeTierVPC/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.136.0"
+            }
+          },
+          "Exports": {
+            "id": "Exports",
+            "path": "threeTierVPC/Exports",
+            "children": {
+              "Output{\"Ref\":\"ThreeTierVPCA9012DDB\"}": {
+                "id": "Output{\"Ref\":\"ThreeTierVPCA9012DDB\"}",
+                "path": "threeTierVPC/Exports/Output{\"Ref\":\"ThreeTierVPCA9012DDB\"}",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnOutput",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.136.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.136.0"
+        }
+      },
+      "NetworkFoundationsPortfolioStack": {
+        "id": "NetworkFoundationsPortfolioStack",
+        "path": "NetworkFoundationsPortfolioStack",
+        "children": {
+          "NetworkPortfolio": {
+            "id": "NetworkPortfolio",
+            "path": "NetworkFoundationsPortfolioStack/NetworkPortfolio",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "NetworkFoundationsPortfolioStack/NetworkPortfolio/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ServiceCatalog::Portfolio",
+                  "aws:cdk:cloudformation:props": {
+                    "displayName": "NetworkPortfolio",
+                    "providerName": "Bhavik Shah"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-servicecatalog.CfnPortfolio",
+                  "version": "1.136.0"
+                }
+              },
+              "PortolioPrincipalAssociation4eec35c4f3d1": {
+                "id": "PortolioPrincipalAssociation4eec35c4f3d1",
+                "path": "NetworkFoundationsPortfolioStack/NetworkPortfolio/PortolioPrincipalAssociation4eec35c4f3d1",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ServiceCatalog::PortfolioPrincipalAssociation",
+                  "aws:cdk:cloudformation:props": {
+                    "portfolioId": {
+                      "Ref": "NetworkPortfolio3559A230"
+                    },
+                    "principalArn": "arn:aws:iam::899456967600:role/aws-reserved/sso.amazonaws.com/AWSReservedSSO_AWSAdministratorAccess_30f517a3940f0385",
+                    "principalType": "IAM"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-servicecatalog.CfnPortfolioPrincipalAssociation",
+                  "version": "1.136.0"
+                }
+              },
+              "PortfolioProductAssociationbbae2dafc30d": {
+                "id": "PortfolioProductAssociationbbae2dafc30d",
+                "path": "NetworkFoundationsPortfolioStack/NetworkPortfolio/PortfolioProductAssociationbbae2dafc30d",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::ServiceCatalog::PortfolioProductAssociation",
+                  "aws:cdk:cloudformation:props": {
+                    "portfolioId": {
+                      "Ref": "NetworkPortfolio3559A230"
+                    },
+                    "productId": {
+                      "Fn::ImportValue": "threeTierVPC:ExportsOutputRefThreeTierVPCA9012DDB42C6ACD5"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-servicecatalog.CfnPortfolioProductAssociation",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-servicecatalog.Portfolio",
+              "version": "1.136.0"
+            }
+          },
+          "ExistingAdminRole": {
+            "id": "ExistingAdminRole",
+            "path": "NetworkFoundationsPortfolioStack/ExistingAdminRole",
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Resource",
+              "version": "1.136.0"
+            }
+          },
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "NetworkFoundationsPortfolioStack/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "NetworkFoundationsPortfolioStack/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnResource",
+                  "version": "1.136.0"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "NetworkFoundationsPortfolioStack/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.CfnCondition",
+                  "version": "1.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/core.Construct",
+              "version": "1.136.0"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "@aws-cdk/core.Stack",
+          "version": "1.136.0"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "@aws-cdk/core.App",
+      "version": "1.136.0"
+    }
+  }
+}
