@@ -1,8 +1,11 @@
-import * as ec2 from "@aws-cdk/aws-ec2";
-import * as cdk from "@aws-cdk/core";
+import * as ec2 from "aws-cdk-lib/aws-ec2";
+import * as route53 from "aws-cdk-lib/aws-route53";
+import { Stack, StackProps } from "aws-cdk-lib";
 
-export class BuildingBlocksStack extends cdk.Stack {
-  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+import { Construct } from "constructs";
+
+export class BuildingBlocksStack extends Stack {
+  constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
     const vpcCidr = this.node.tryGetContext("vpcCidr");
