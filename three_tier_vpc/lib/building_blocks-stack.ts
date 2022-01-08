@@ -15,6 +15,7 @@ export class BuildingBlocksStack extends Stack {
     const natGateways = this.node.tryGetContext("natGateways");
     const maxAzs = this.node.tryGetContext("maxAzs");
     const appName = this.node.tryGetContext("appName");
+    const dnsHostedZoneName = this.node.tryGetContext("dnsHostedZoneName");
 
     const vpc = new ec2.Vpc(this, appName.concat("-vpc"), {
       cidr: vpcCidr,
@@ -28,12 +29,12 @@ export class BuildingBlocksStack extends Stack {
         },
         {
           name: appName.concat("private-subnet"),
-          subnetType: ec2.SubnetType.PRIVATE,
+          subnetType: ec2.SubnetType.PRIVATE_WITH_NAT,
           cidrMask: privateCidrMask,
         },
         {
           name: appName.concat("isolated-subnet"),
-          subnetType: ec2.SubnetType.ISOLATED,
+          subnetType: ec2.SubnetType.PRIVATE_ISOLATED,
           cidrMask: isolatedCidrMask,
         },
       ],
@@ -43,7 +44,7 @@ export class BuildingBlocksStack extends Stack {
       this,
       "HostedZone",
       {
-        zoneName: "private.domain.com",
+        zoneName: dnsHostedZoneName,
         vpc, // At least one VPC has to be added to a Private Hosted Zone.
       }
     );

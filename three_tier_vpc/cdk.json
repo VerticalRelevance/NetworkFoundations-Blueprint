@@ -21,6 +21,7 @@
     "natGateways": 1,
     "maxAzs": 3,
     "owner": "OWNER_NAME",
-    "environment": "dev"
+    "environment": "dev",
+    "dnsHostedZoneName": "internal.vpc1.verticalrelevancelabs.com"
   }
 }
